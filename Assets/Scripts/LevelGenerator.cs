@@ -28,7 +28,7 @@ public class LevelGenerator : MonoBehaviour
 
         if (other.gameObject == player)
         {
-            Vector3 spawnPosition = transform.position + new Vector3(rand.Next(35, 40), rand.Next(-5, 5), 0);
+            Vector3 spawnPosition = transform.position + new Vector3(rand.Next(38, 44), rand.Next(-5, 5), 0);
             Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
         }
     }
