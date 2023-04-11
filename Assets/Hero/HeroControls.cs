@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HeroControls : MonoBehaviour
 {
@@ -53,6 +54,10 @@ public class HeroControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(1);
+        }
         slideTimeCounter -= Time.deltaTime;
         ledgeTimeCounter -= Time.deltaTime;
         transform.forward = new Vector3(moveInput, 0, Mathf.Abs(moveInput) - 1);
@@ -100,7 +105,7 @@ public class HeroControls : MonoBehaviour
         {
             SoundManager.Instance.StopFalling(fallingSound);
         }
-        if (!isGrounded && !isOnLedge && isMoving)
+        if (!isGrounded && !isOnLedge)
         {
             fallTimeCounter += Time.deltaTime;
             if (move.y < -5)
@@ -119,18 +124,18 @@ public class HeroControls : MonoBehaviour
         // Check for Wall
         foreach (var c in wallCollision)
         {
-            isOnLedge = Physics.CheckSphere(c.position, 0.1f, ledgeLayer, QueryTriggerInteraction.Ignore);
             isBlocked = Physics.CheckSphere(c.position, 0.1f, groundLayer, QueryTriggerInteraction.Ignore);
-            if (isOnLedge && ledgeTimeCounter < 0)
-            {
-                move.y = 0;
-                if (jumpPressed)
-                {
-                    ledgeTimeCounter = 2f;
-                }
-            } 
             if (isBlocked)
             {
+                isOnLedge = Physics.CheckSphere(groundCollision.position, 0.1f, ledgeLayer, QueryTriggerInteraction.Ignore) || Physics.CheckSphere(c.position, 0.1f, ledgeLayer, QueryTriggerInteraction.Ignore);
+                if (isOnLedge && ledgeTimeCounter < 0)
+                {
+                    move.y = 0;
+                    if (jumpPressed)
+                    {
+                        ledgeTimeCounter = 2f;
+                    }
+                }
                 if (!blockAudioPlayed)
                 {
                     SoundManager.Instance.PlaySound(blockedSound);
@@ -143,11 +148,6 @@ public class HeroControls : MonoBehaviour
             }
             
         }
-        if(isBlocked && move.y < -50)
-        {
-            ledgeTimeCounter = 2f;
-        }
-
 
         isUnderCeiling = Physics.CheckSphere(ceilingCollision.position, 0.1f, groundLayer, QueryTriggerInteraction.Ignore);
 
