@@ -85,7 +85,7 @@ public class EnemyController : MonoBehaviour
             if (newIndex != _oldestIndex)
                 _newestIndex = newIndex;
 
-            _positionBuffer[_newestIndex] = leader.position;
+            _positionBuffer[_newestIndex] = new Vector3(leader.position.x, leader.position.y - 0.2f, leader.position.z);
             _timeBuffer[_newestIndex] = Time.time;
 
             // Skip ahead in the buffer to the segment containing our target time.
