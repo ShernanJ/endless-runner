@@ -1,12 +1,18 @@
-using Newtonsoft.Json.Linq;
-using System.Collections;
-using System.Collections.Generic;
+/**
+ * Author: Shernan Javier
+ * 
+ * I wanted to replicate Dying Light 2's dynamic music system when parkouring,
+ * I commented it out in the meantime because I wanted to figure it out once I get better
+ * with game development
+ * 
+ * Example: https://www.youtube.com/watch?v=rnjRoNlEsuU&ab_channel=Raygunner
+ */
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
-    private float timer = 1;
+    //private float timer = 1;
 
     [SerializeField] private AudioSource _ambientSource, _effectsSource, _bassSource, _drumsSource, _pianoSource, _otherSource, _otherAltSource, _fallingSource;
     void Awake()

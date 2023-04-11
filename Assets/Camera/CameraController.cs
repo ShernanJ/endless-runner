@@ -7,8 +7,6 @@
  * 
  * */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -26,6 +24,6 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, new Vector3(target.position.x + 3, target.position.y - 2, target.position.z + 1) + offset, Time.deltaTime * 3);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(target.position.x + 1, target.position.y - 2, target.position.z + 1) + offset, Time.deltaTime * 3);
     }
 }
