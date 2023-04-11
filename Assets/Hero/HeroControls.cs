@@ -135,13 +135,15 @@ public class HeroControls : MonoBehaviour
                     {
                         ledgeTimeCounter = 2f;
                     }
+                    if (!blockAudioPlayed)
+                    {
+                        SoundManager.Instance.PlaySound(blockedSound);
+                        blockAudioPlayed = true;
+                    }
+                    break;
+
                 }
-                if (!blockAudioPlayed)
-                {
-                    SoundManager.Instance.PlaySound(blockedSound);
-                    blockAudioPlayed = true;
-                }
-                break;
+                
             }else
             {
                 isBlocked = false;
