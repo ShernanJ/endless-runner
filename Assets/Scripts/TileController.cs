@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TileController : MonoBehaviour
 {
-    private float leftBound = 20.0f;
+    private float leftBound = 40.0f;
     private GameObject player;
 
     void Start()
