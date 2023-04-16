@@ -128,7 +128,7 @@ public class HeroControls : MonoBehaviour
             if (isBlocked)
             {
                 isOnLedge = Physics.CheckSphere(groundCollision.position, 0.1f, ledgeLayer, QueryTriggerInteraction.Ignore) || Physics.CheckSphere(c.position, 0.1f, ledgeLayer, QueryTriggerInteraction.Ignore);
-                if (isOnLedge && ledgeTimeCounter < 0)
+                if (isOnLedge && ledgeTimeCounter < 0 && !isSliding)
                 {
                     move.y = 0;
                     if (jumpPressed)
@@ -220,6 +220,7 @@ public class HeroControls : MonoBehaviour
             _controller.height = 0.3f;
             _controller.center = new Vector3(0f, 0.45f, 3.2f);
             _controller.radius = 0.2f;
+            _controller.transform.localScale = new Vector3(1f, 1f, 1f);
             foreach (var c in wallCollision)
             {
                 c.localScale = new Vector3(1.0f, 0.5f, 0.1f);
